@@ -2,12 +2,12 @@ import json
 import os
 import re
 from groq import Groq
-from services.clausemind import CLAUSEMIND_CONVERSATIONAL, CLAUSEMIND_SYSTEM
+from services.pactmind import PACTMIND_CONVERSATIONAL, PACTMIND_SYSTEM
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 MODEL = "llama-3.1-8b-instant"
-CHAT_MODEL = os.getenv("CLAUSEMIND_CHAT_MODEL", "llama-3.3-70b-versatile")
+CHAT_MODEL = os.getenv("PACTMIND_CHAT_MODEL", "llama-3.3-70b-versatile")
 MAX_QUESTION_LENGTH = 2000
 
 
@@ -149,8 +149,8 @@ def _history_dicts(history: list | None) -> list[dict]:
 
 def _build_system_prompt(mode: str) -> str:
   if mode in ("conversational", "plain_english"):
-    return f"{CLAUSEMIND_SYSTEM}\n\n{CLAUSEMIND_CONVERSATIONAL}"
-  return CLAUSEMIND_SYSTEM
+    return f"{PACTMIND_SYSTEM}\n\n{PACTMIND_CONVERSATIONAL}"
+  return PACTMIND_SYSTEM
 
 
 def _build_chat_messages(
@@ -443,7 +443,7 @@ Rules:
   response = client.chat.completions.create(
     model=MODEL,
     messages=[
-      {"role": "system", "content": CLAUSEMIND_SYSTEM},
+      {"role": "system", "content": PACTMIND_SYSTEM},
       {"role": "user", "content": prompt},
     ],
     temperature=0.05,

@@ -14,6 +14,10 @@ __pycache__/
 .env.local
 .env.production
 
+# Documentation with potentially sensitive examples
+VERCEL_DEPLOY.md
+DEPLOY_*.md
+
 # ML / Hugging Face cache (not the app models/ Python package)
 .cache/
 

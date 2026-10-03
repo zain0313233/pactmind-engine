@@ -88,7 +88,7 @@ async def query_document_stream(request: QueryRequest):
   if not scope["allowed"]:
     return _blocked_stream(
       scope["reason"]
-      or "ClauseMind only answers questions about your uploaded contract.",
+      or "PactMind only answers questions about your uploaded contract.",
       irrelevant=True,
     )
 
@@ -155,7 +155,7 @@ async def query_document(request: QueryRequest):
   if not scope["allowed"]:
     return QueryResponse(
       answer=scope["reason"]
-      or "ClauseMind only answers questions about your uploaded contract.",
+      or "PactMind only answers questions about your uploaded contract.",
       sources=[],
       confidence="low",
       irrelevant=True,

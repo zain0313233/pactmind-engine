@@ -2,10 +2,10 @@ import json
 import os
 import re
 from groq import Groq
-from services.clausemind import CLAUSEMIND_SYSTEM, wrap_contract_text
+from services.pactmind import PACTMIND_SYSTEM, wrap_contract_text
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-ANALYSIS_MODEL = os.getenv("CLAUSEMIND_ANALYSIS_MODEL", "llama-3.1-8b-instant")
+ANALYSIS_MODEL = os.getenv("PACTMIND_ANALYSIS_MODEL", "llama-3.1-8b-instant")
 MAX_TEXT_CHARS = 18000
 HEAD_CHARS = 12000
 TAIL_CHARS = 6000
@@ -99,7 +99,7 @@ def _compute_risk_level(score: int, high: int, medium: int) -> str:
 
 
 def analyze_contract(text: str) -> dict:
-  """Run ClauseMind full contract analysis — risks, summary, missing clauses."""
+  """Run PactMind full contract analysis — risks, summary, missing clauses."""
   document_text = _prepare_analysis_text(text)
 
   wrapped = wrap_contract_text(document_text)
@@ -171,7 +171,7 @@ Rules:
   response = client.chat.completions.create(
     model=ANALYSIS_MODEL,
     messages=[
-      {"role": "system", "content": CLAUSEMIND_SYSTEM},
+      {"role": "system", "content": PACTMIND_SYSTEM},
       {"role": "user", "content": prompt},
     ],
     temperature=0.05,

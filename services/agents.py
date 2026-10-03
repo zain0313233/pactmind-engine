@@ -3,10 +3,10 @@ import os
 import re
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from groq import Groq
-from services.clausemind import CLAUSEMIND_SYSTEM, wrap_contract_text
+from services.pactmind import PACTMIND_SYSTEM, wrap_contract_text
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-AGENT_MODEL = os.getenv("CLAUSEMIND_AGENT_MODEL", "llama-3.1-8b-instant")
+AGENT_MODEL = os.getenv("PACTMIND_AGENT_MODEL", "llama-3.1-8b-instant")
 MAX_TEXT_CHARS = 14000
 
 AGENT_CONFIGS = [
@@ -15,7 +15,7 @@ AGENT_CONFIGS = [
     "name": "Reviewer",
     "role": "Risk & clause review",
     "icon": "shield",
-    "focus": """You are the REVIEWER agent on the ClauseMind legal team.
+    "focus": """You are the REVIEWER agent on the PactMind legal team.
 Focus ONLY on contractual risks, unfavorable terms, liability exposure, termination traps, and ambiguous language.
 Identify the top risks a business reviewer must address before signing.""",
     "output_hint": '"findings": ["specific risk 1", "specific risk 2", "specific risk 3"]',
@@ -25,7 +25,7 @@ Identify the top risks a business reviewer must address before signing.""",
     "name": "Compliance",
     "role": "Regulatory & missing clauses",
     "icon": "scale",
-    "focus": """You are the COMPLIANCE agent on the ClauseMind legal team.
+    "focus": """You are the COMPLIANCE agent on the PactMind legal team.
 Focus ONLY on missing standard clauses, regulatory gaps, data protection, audit rights, and compliance red flags.
 Flag what is absent or weak from a compliance perspective — NOT general business risks.""",
     "output_hint": '"findings": ["compliance gap 1", "missing clause 2", "regulatory concern 3"]',
@@ -35,7 +35,7 @@ Flag what is absent or weak from a compliance perspective — NOT general busine
     "name": "Finance",
     "role": "Payment & commercial terms",
     "icon": "wallet",
-    "focus": """You are the FINANCE agent on the ClauseMind legal team.
+    "focus": """You are the FINANCE agent on the PactMind legal team.
 Focus ONLY on payment terms, fees, penalties, refunds, caps, auto-renewal costs, and financial obligations.
 Quantify or describe monetary exposure where the contract states it.""",
     "output_hint": '"findings": ["payment term 1", "financial obligation 2", "cost risk 3"]',
@@ -45,7 +45,7 @@ Quantify or describe monetary exposure where the contract states it.""",
     "name": "Executive",
     "role": "Executive summary",
     "icon": "briefcase",
-    "focus": """You are the EXECUTIVE agent on the ClauseMind legal team.
+    "focus": """You are the EXECUTIVE agent on the PactMind legal team.
 Provide a crisp 5-line executive briefing: what this contract is, who benefits, biggest risks, key dates, and sign/don't-sign recommendation for a busy executive.
 Keep summary to exactly 5 short lines or fewer.""",
     "output_hint": '"findings": ["line 1 of exec brief", "line 2", "line 3", "line 4", "line 5"]',
@@ -107,7 +107,7 @@ Rules:
     response = client.chat.completions.create(
       model=AGENT_MODEL,
       messages=[
-        {"role": "system", "content": CLAUSEMIND_SYSTEM},
+        {"role": "system", "content": PACTMIND_SYSTEM},
         {"role": "user", "content": prompt},
       ],
       temperature=0.05,
@@ -155,7 +155,7 @@ Rules:
 
 
 def run_agent_team(text: str) -> dict:
-  """Run all 4 ClauseMind agents in parallel and merge opinions."""
+  """Run all 4 PactMind agents in parallel and merge opinions."""
   document_text = _truncate_text(text)
   agents: list[dict] = []
   order = {a["id"]: i for i, a in enumerate(AGENT_CONFIGS)}

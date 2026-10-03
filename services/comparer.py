@@ -2,10 +2,10 @@ import json
 import os
 import re
 from groq import Groq
-from services.clausemind import CLAUSEMIND_SYSTEM, wrap_contract_text
+from services.pactmind import PACTMIND_SYSTEM, wrap_contract_text
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-COMPARE_MODEL = os.getenv("CLAUSEMIND_COMPARE_MODEL", "llama-3.1-8b-instant")
+COMPARE_MODEL = os.getenv("PACTMIND_COMPARE_MODEL", "llama-3.1-8b-instant")
 MAX_TEXT_CHARS = 12000
 
 
@@ -80,7 +80,7 @@ Rules:
   response = client.chat.completions.create(
     model=COMPARE_MODEL,
     messages=[
-      {"role": "system", "content": CLAUSEMIND_SYSTEM},
+      {"role": "system", "content": PACTMIND_SYSTEM},
       {"role": "user", "content": prompt},
     ],
     temperature=0.05,

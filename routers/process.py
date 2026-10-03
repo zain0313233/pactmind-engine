@@ -19,7 +19,7 @@ from services.content_guard import security_scan_document
 from job_limits import job_slot, reject_if_queue_full
 
 router = APIRouter()
-logger = logging.getLogger("clauseiq.engine.process")
+logger = logging.getLogger("pactmind.engine.process")
 
 
 async def process_document_task(request: ProcessRequest):
@@ -76,7 +76,7 @@ async def process_document_task(request: ProcessRequest):
         except Exception:
             logger.exception("security_scan failed for %s", request.document_id)
 
-        # 8. ClauseMind auto-analysis (risk scanner + summary)
+        # 8. PactMind auto-analysis (risk scanner + summary)
         try:
             set_analysis_pending(request.document_id)
             analysis = analyze_contract(text)
@@ -84,7 +84,7 @@ async def process_document_task(request: ProcessRequest):
         except Exception:
             save_document_analysis(request.document_id, {"status": "failed"})
 
-        # 9. ClauseMind agent team (parallel specialist opinions)
+        # 9. PactMind agent team (parallel specialist opinions)
         try:
             set_agents_pending(request.document_id)
             agent_result = run_agent_team(text)

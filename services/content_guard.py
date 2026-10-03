@@ -7,7 +7,7 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
       r"\b(write|generate|create|build|code|script|program)\b.{0,40}\b(python|javascript|java|c\+\+|sql|html|css|react|node)\b",
       re.I,
     ),
-    "ClauseMind only answers questions about your uploaded contract — not general programming requests.",
+    "PactMind only answers questions about your uploaded contract — not general programming requests.",
   ),
   (
     re.compile(
@@ -26,7 +26,7 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
   ),
   (
     re.compile(r"\b(homework|essay|assignment|exam question)\b", re.I),
-    "ClauseMind is for contract documents only — not school assignments.",
+    "PactMind is for contract documents only — not school assignments.",
   ),
   (
     re.compile(
@@ -44,7 +44,7 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
       r"\b(war|invasion|missile|military|troops|airstrike|bombing|ceasefire|sanctions)\b",
       re.I,
     ),
-    "ClauseMind only analyzes your uploaded contract — not wars, news, or world events.",
+    "PactMind only analyzes your uploaded contract — not wars, news, or world events.",
   ),
   (
     re.compile(
@@ -65,7 +65,7 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
       r"\b(election|politics|political party|prime minister|president|parliament|congress vote)\b",
       re.I,
     ),
-    "ClauseMind is for contract analysis only — not political or news topics.",
+    "PactMind is for contract analysis only — not political or news topics.",
   ),
   (
     re.compile(r"\b(bitcoin|crypto|stock price|share price|forex|sports score|who won the match)\b", re.I),
@@ -76,7 +76,7 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
       r"\b(fitness|workout|gym routine|diet plan|weight loss|exercise technique)\b",
       re.I,
     ),
-    "ClauseMind only answers contract questions — not fitness or health advice.",
+    "PactMind only answers contract questions — not fitness or health advice.",
   ),
   (
     re.compile(r"\b(newton|einstein|physics|thermodynamics|calculus|science law)\b", re.I),
@@ -87,11 +87,11 @@ _OFF_TOPIC_PATTERNS: list[tuple[re.Pattern[str], str]] = [
       r"\b(beautiful|beutiful|beautful).{0,30}\b(place|palce|earth)\b",
       re.I,
     ),
-    "ClauseMind is for contract analysis — not travel or general knowledge.",
+    "PactMind is for contract analysis — not travel or general knowledge.",
   ),
   (
     re.compile(r"\b(most|best).{0,20}\b(place|palce|earth|destination)\b", re.I),
-    "ClauseMind is for contract analysis — not travel or general knowledge.",
+    "PactMind is for contract analysis — not travel or general knowledge.",
   ),
   (
     re.compile(r"\b(budget|pudget|gdp|inflation|economy today|fiscal)\b", re.I),
@@ -185,7 +185,7 @@ _WEAK_RELEVANCE_SCORE = 0.50
 
 _OFF_TOPIC_SHORT = (
   "I couldn't find anything in this contract related to your question. "
-  "ClauseMind only answers questions about the uploaded document — "
+  "PactMind only answers questions about the uploaded document — "
   "not news, wars, or unrelated topics."
 )
 
@@ -326,5 +326,5 @@ def quick_document_screen(text: str) -> dict:
     "is_legal_document": None,
     "confidence": "low",
     "security_risks": [],
-    "recommendation": "Run a ClauseMind content review from the admin panel.",
+    "recommendation": "Run a PactMind content review from the admin panel.",
   }

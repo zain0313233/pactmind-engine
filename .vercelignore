@@ -1,0 +1,51 @@
+# Ignore development and cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Ignore virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Ignore git and documentation
+.git/
+.gitignore
+README.md
+*.md
+
+# Ignore test files
+tests/
+test_*.py
+*_test.py
+
+# Ignore local development files
+.env
+.env.local
+.env.*.local
+
+# Ignore Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Ignore Railway config
+railway.toml
+
+# Ignore large model caches (if any)
+models/
+*.bin
+*.pt
+*.pth
+*.safetensors

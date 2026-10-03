@@ -95,7 +95,7 @@ def notify_analysis_complete(document_id: str, result: dict) -> None:
             user_id,
             "analysis_complete",
             "Analysis complete",
-            f'ClauseMind finished analyzing "{title}" (risk: {risk_level}).',
+            f'PactMind finished analyzing "{title}" (risk: {risk_level}).',
             f"analysis_complete:{document_id}",
             {"documentId": document_id, "riskLevel": risk_level},
         )
@@ -105,7 +105,7 @@ def notify_analysis_complete(document_id: str, result: dict) -> None:
             user_id,
             "analysis_failed",
             "Analysis failed",
-            f'ClauseMind could not analyze "{title}". You can retry from the document page.',
+            f'PactMind could not analyze "{title}". You can retry from the document page.',
             f"analysis_failed:{document_id}",
             {"documentId": document_id},
         )

@@ -6,7 +6,7 @@ from groq import Groq
 from services.content_guard import quick_document_screen
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-MODEL = os.getenv("CLAUSEMIND_GUARD_MODEL", "llama-3.1-8b-instant")
+MODEL = os.getenv("PACTMIND_GUARD_MODEL", "llama-3.1-8b-instant")
 MAX_SAMPLE = 12_000
 
 
@@ -31,7 +31,7 @@ def assess_document_content(text: str, title: str = "") -> dict:
   quick = quick_document_screen(text)
   sample = text[:MAX_SAMPLE]
 
-  prompt = f"""You are a security and content reviewer for ClauseIQ, a legal contract platform.
+  prompt = f"""You are a security and content reviewer for PactMind, a legal contract platform.
 
 Document title: {title or "Untitled"}
 
