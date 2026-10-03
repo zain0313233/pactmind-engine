@@ -78,7 +78,7 @@ def format_history_summary(history: list[dict], max_turns: int = 5) -> str:
     content = (turn.get("content") or "").strip()
     if not content or role not in ("user", "assistant"):
       continue
-    label = "User" if role == "user" else "ClauseMind"
+    label = "User" if role == "user" else "PactMind"
     snippet = content[:500]
     lines.append(f"{label}: {snippet}")
 

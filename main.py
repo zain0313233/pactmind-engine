@@ -14,9 +14,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("clauseiq.engine")
+logger = logging.getLogger("pactmind.engine")
 
-app = FastAPI(title="ClauseIQ AI Engine", version="1.0.0")
+app = FastAPI(title="PactMind AI Engine", version="1.0.0")
 
 cors_origins = [
   origin.strip()
@@ -100,6 +100,6 @@ def health():
 
   return {
     "status": "healthy" if healthy else "degraded",
-    "service": "clauseiq-engine",
+    "service": "pactmind-engine",
     "checks": checks,
   }
